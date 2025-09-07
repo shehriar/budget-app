@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: budget-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: dbonline            # keep this in sync with application.yml
+    ports:
+      - "3306:3306"                      # host:container
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-ppassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  adminer:
+    image: adminer
+    container_name: budget-adminer
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8081:8080"                      # visit http://localhost:8081
+
+volumes:
+  mysql_data:

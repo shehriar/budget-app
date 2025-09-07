@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { api } from "./api/client"
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from "./pages/dashboard";
-import NewSpendForm from "./pages/new-spend-form";
+import Dashboard from "./pages/dashboard/dashboard";
+import NewSpendForm from "./pages/new-spend/new-spend-form";
 
 export default function App() {
   return (

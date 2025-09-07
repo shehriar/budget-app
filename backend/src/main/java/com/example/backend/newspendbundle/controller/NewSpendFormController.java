@@ -11,4 +11,9 @@ public class NewSpendFormController {
 
         return Map.of("status", "ok");
     }
+
+    @GetMapping("/api/new-spend/validate-permission")
+    public boolean validatePermission() {
+        return true;
+    }
 }
